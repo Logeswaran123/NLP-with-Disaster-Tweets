@@ -121,3 +121,23 @@ class Model():
                         optimizer=tf.keras.optimizers.Adam(),
                         metrics=["accuracy"])
         return model
+
+
+    def Model_5(self, train_sentences):
+        """
+        Create a model with Conv1D layer
+        """
+        inputs = layers.Input(shape=(1,), dtype="string")
+        x = Create_Text_Vectorizer(train_sentences)(inputs) # turn the input text into numbers
+        x = Create_Embedding_Layer()(x) # create an embedding of the numerized text
+        x = layers.Conv1D(filters=32, kernel_size=5, activation="relu")(x)
+        x = layers.GlobalMaxPool1D()(x)
+        x = layers.Dense(32, activation="relu")(x)
+        outputs = layers.Dense(1, activation="sigmoid")(x)
+        model = tf.keras.Model(inputs, outputs, name="model_5_Conv1D")
+
+        # Compile model
+        model.compile(loss="binary_crossentropy",
+                        optimizer=tf.keras.optimizers.Adam(),
+                        metrics=["accuracy"])
+        return model
