@@ -38,7 +38,7 @@ class Model():
 
     def Baseline(self):
         """
-        Create and return Baseline model
+        Create and return a Baseline model
         """
         # TF-IDF, Multinomial Naive Bayes
         # Create tokenization and modelling pipeline
@@ -50,7 +50,7 @@ class Model():
 
     def Model_1(self, train_sentences):
         """
-        Create a simple Dense Model
+        Create and return a simple Dense Model
         """
         inputs = layers.Input(shape=(1,), dtype="string") # inputs are 1-dimensional strings
         x = Create_Text_Vectorizer(train_sentences)(inputs) # turn the input text into numbers
@@ -67,7 +67,7 @@ class Model():
 
     def Model_2(self, train_sentences):
         """
-        Create a LSTM Model
+        Create and return a LSTM Model
         """
         inputs = layers.Input(shape=(1,), dtype="string")
         x = Create_Text_Vectorizer(train_sentences)(inputs) # turn the input text into numbers
@@ -86,7 +86,7 @@ class Model():
 
     def Model_3(self, train_sentences):
         """
-        Create a model with GRU cell
+        Create and return a model with GRU cell
         """
         inputs = layers.Input(shape=(1,), dtype="string")
         x = Create_Text_Vectorizer(train_sentences)(inputs) # turn the input text into numbers
@@ -106,7 +106,7 @@ class Model():
 
     def Model_4(self, train_sentences):
         """
-        Create a Bidirectional RNN
+        Create and return a Bidirectional RNN model
         """
         inputs = layers.Input(shape=(1,), dtype="string")
         x = Create_Text_Vectorizer(train_sentences)(inputs) # turn the input text into numbers
@@ -125,7 +125,7 @@ class Model():
 
     def Model_5(self, train_sentences):
         """
-        Create a model with Conv1D layer
+        Create and return a model with Conv1D layer
         """
         inputs = layers.Input(shape=(1,), dtype="string")
         x = Create_Text_Vectorizer(train_sentences)(inputs) # turn the input text into numbers
