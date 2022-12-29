@@ -1,5 +1,5 @@
 # NLP-with-Disaster-Tweets
-Classify if the input text is a Disaster or Not a Disaster.
+Create a model to Classify if the input text is a Disaster or Not a Disaster.
 
 
 ## Dataset
