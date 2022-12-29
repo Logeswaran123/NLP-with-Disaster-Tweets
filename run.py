@@ -89,3 +89,22 @@ if __name__ == '__main__':
     model_3_results = calculate_results(y_true=val_labels, y_pred=tf.squeeze(tf.round(model_3_pred_probs)))
     print("\nGRU model Results:\n", model_3_results)
     print("\n-----------------------------------------------------\n")
+
+
+    # Create Bidirectional RNN
+    model_4 = models.Model_4(train_sentences)
+
+    # Fit model on training data
+    model_4_history = model_4.fit(train_sentences, # input sentences can be a list of strings due to text preprocessing layer built-in model
+                            train_labels,
+                            epochs=5,
+                            validation_data=(val_sentences, val_labels),
+                            callbacks=[create_tensorboard_callback(dir_name=SAVE_DIR, 
+                                                                    experiment_name="bidir_model")])
+    model_4.evaluate(val_sentences, val_labels)
+
+    # Predict on validation data and calculate scores
+    model_4_pred_probs = model_4.predict(val_sentences)
+    model_4_results = calculate_results(y_true=val_labels, y_pred=tf.squeeze(tf.round(model_4_pred_probs)))
+    print("\nBidirectional model Results:\n", model_4_results)
+    print("\n-----------------------------------------------------\n")

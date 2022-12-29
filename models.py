@@ -93,9 +93,28 @@ class Model():
         x = Create_Embedding_Layer()(x) # create an embedding of the numerized text
         x = layers.GRU(32, return_sequences=True)(x) # return vector for each word in the text (you can stack RNN cells as long as return_sequences=True)
         x = layers.GRU(32)(x) # return vector for whole sequence
-        x = layers.Dense(32, activation="relu")(x) # optional dense layer on top of output of LSTM cell
+        x = layers.Dense(32, activation="relu")(x) # optional dense layer on top of output of GRU cell
         outputs = layers.Dense(1, activation="sigmoid")(x)
         model = tf.keras.Model(inputs, outputs, name="model_3_GRU")
+
+        # Compile model
+        model.compile(loss="binary_crossentropy",
+                        optimizer=tf.keras.optimizers.Adam(),
+                        metrics=["accuracy"])
+        return model
+
+
+    def Model_4(self, train_sentences):
+        """
+        Create a Bidirectional RNN
+        """
+        inputs = layers.Input(shape=(1,), dtype="string")
+        x = Create_Text_Vectorizer(train_sentences)(inputs) # turn the input text into numbers
+        x = Create_Embedding_Layer()(x) # create an embedding of the numerized text
+        x = layers.Bidirectional(layers.LSTM(64))(x)
+        x = layers.Dense(32, activation="relu")(x) # optional dense layer on top of output of LSTM cell
+        outputs = layers.Dense(1, activation="sigmoid")(x)
+        model = tf.keras.Model(inputs, outputs, name="model_4_BiDir")
 
         # Compile model
         model.compile(loss="binary_crossentropy",
