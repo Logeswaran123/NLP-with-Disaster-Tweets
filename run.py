@@ -127,3 +127,22 @@ if __name__ == '__main__':
     model_5_results = calculate_results(y_true=val_labels, y_pred=tf.squeeze(tf.round(model_5_pred_probs)))
     print("\nConv1D model Results:\n", model_5_results)
     print("\n-----------------------------------------------------\n")
+
+
+    # Create model using transfer learning
+    model_6 = models.Model_6(train_sentences)
+
+    # Fit model on training data
+    model_6_history = model_6.fit(train_sentences, # input sentences can be a list of strings due to text preprocessing layer built-in model
+                            train_labels,
+                            epochs=10,
+                            validation_data=(val_sentences, val_labels),
+                            callbacks=[create_tensorboard_callback(dir_name=SAVE_DIR, 
+                                                                    experiment_name="USE_model")])
+    model_6.evaluate(val_sentences, val_labels)
+
+    # Predict on validation data and calculate scores
+    model_6_pred_probs = model_6.predict(val_sentences)
+    model_6_results = calculate_results(y_true=val_labels, y_pred=tf.squeeze(tf.round(model_6_pred_probs)))
+    print("\nUSE model Results:\n", model_6_results)
+    print("\n-----------------------------------------------------\n")

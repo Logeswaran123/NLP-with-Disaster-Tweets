@@ -103,7 +103,6 @@ class Model():
                         metrics=["accuracy"])
         return model
 
-
     def Model_4(self, train_sentences):
         """
         Create and return a Bidirectional RNN model
@@ -122,7 +121,6 @@ class Model():
                         metrics=["accuracy"])
         return model
 
-
     def Model_5(self, train_sentences):
         """
         Create and return a model with Conv1D layer
@@ -135,6 +133,29 @@ class Model():
         x = layers.Dense(32, activation="relu")(x)
         outputs = layers.Dense(1, activation="sigmoid")(x)
         model = tf.keras.Model(inputs, outputs, name="model_5_Conv1D")
+
+        # Compile model
+        model.compile(loss="binary_crossentropy",
+                        optimizer=tf.keras.optimizers.Adam(),
+                        metrics=["accuracy"])
+        return model
+
+    def Model_6(self, train_sentences):
+        """
+        Create and return a transfer learning model
+        """
+        import tensorflow_hub as hub
+
+        sentence_encoder_layer = hub.KerasLayer("https://tfhub.dev/google/universal-sentence-encoder/4",
+                                        input_shape=[], # shape of inputs coming to our model 
+                                        dtype=tf.string, # data type of inputs coming to the USE layer
+                                        trainable=False, # keep the pretrained weights (we'll create a feature extractor)
+                                        name="Universal_Sentence_Encoder")
+        model = tf.keras.Sequential([
+                        sentence_encoder_layer, # take in sentences and then encode them into an embedding
+                        layers.Dense(64, activation="relu"),
+                        layers.Dense(1, activation="sigmoid")
+                        ], name="model_6_USE")
 
         # Compile model
         model.compile(loss="binary_crossentropy",
