@@ -1,4 +1,4 @@
-# NLP-with-Disaster-Tweets
+# NLP-with-Disaster-Tweets 🐦🔵
 Create a model to Classify if the input text is a Disaster or Not a Disaster.
 
 
@@ -12,3 +12,5 @@ TODO
 
 ## How to run
 TODO
+
+Happy Learning! 😄
