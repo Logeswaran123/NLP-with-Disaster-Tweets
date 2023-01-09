@@ -9,3 +9,6 @@ Dataset contains 10,000 tweets that are classified as 0 (for Not a Disaster) and
 
 ## Experiments
 TODO
+
+## How to run
+TODO
