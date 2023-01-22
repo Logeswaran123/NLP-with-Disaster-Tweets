@@ -7,10 +7,15 @@ Kaggle: Natural Language Processing with Disaster Tweets | [Link](https://www.ka
 
 Dataset contains 10,000 tweets that are classified as 0 (for Not a Disaster) and 1 (for Disaster).
 
-## Experiments
-TODO
-
 ## How to run
+```python
+ python run.py --data <path to dataset>
+```
+
+Argumets: <br/>
+*<path to dataset\>* - Path to Dataset directory with train and test dataset.
+
+## Experiments
 TODO
 
 Happy Learning! 😄
